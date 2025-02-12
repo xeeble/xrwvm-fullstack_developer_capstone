@@ -4,7 +4,7 @@ img{
 }
 
 .card{
-  border: rgb(103, 102, 105) 3px solid;
+  border: rgb(62, 61, 63) 3px solid;
   display: flex;  
   flex-direction: column;
   margin-left:5%;
@@ -39,6 +39,7 @@ img{
   text-align: center;
   margin:20px;
   padding:5px;
+  font-weight: bold;
 }
 
 .homepage_links{
