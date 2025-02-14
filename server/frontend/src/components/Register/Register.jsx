@@ -4,6 +4,7 @@ import user_icon from "../assets/person.png"
 import email_icon from "../assets/email.png"
 import password_icon from "../assets/password.png"
 import close_icon from "../assets/close.png"
+import Header from '../Header/Header';
 
 const Register = () => {
 
@@ -49,6 +50,8 @@ const Register = () => {
 };
 
   return(
+    <div>
+         <Header/>
     <div className="register_container" style={{width: "50%"}}>
       <div className="header" style={{display: "flex",flexDirection: "row", justifyContent: "space-between"}}>
           <span className="text" style={{flexGrow:"1"}}>SignUp</span> 
@@ -91,6 +94,7 @@ const Register = () => {
           <input className="submit" type="submit" value="Register"/>
         </div>
       </form>
+      </div>
       </div>
   )
 }
