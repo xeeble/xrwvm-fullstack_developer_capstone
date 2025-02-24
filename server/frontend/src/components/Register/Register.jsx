@@ -21,7 +21,10 @@ const Register = () => {
 
   const register = async (e) => {
     e.preventDefault();
-
+    if (!firstName || !lastName || !userName || !password || !email) {
+      alert("Please fill in all fields.");
+      return;
+  }
     let register_url = window.location.origin+"/djangoapp/register";
     
     const res = await fetch(register_url, {
