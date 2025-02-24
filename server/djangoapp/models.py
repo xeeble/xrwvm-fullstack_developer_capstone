@@ -1,6 +1,6 @@
 from django.db import models
-from django.utils.timezone import now
 from django.core.validators import MaxValueValidator, MinValueValidator
+
 
 class CarMake(models.Model):
     name = models.CharField(max_length=100)
@@ -9,6 +9,7 @@ class CarMake(models.Model):
     def __str__(self):
         return "Name: " + self.name + "," + \
             "Description: " + self.description
+
 
 class CarModel(models.Model):
     car_make = models.ForeignKey(CarMake, on_delete=models.CASCADE)  # Many-to-One relationship
@@ -34,4 +35,3 @@ class CarModel(models.Model):
             "Car Make: " + str(self.car_make) + "," + \
             "Car Type: " + self.type + "," + \
             "Year: " + str(self.year)
-    
