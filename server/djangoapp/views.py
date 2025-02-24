@@ -50,10 +50,17 @@ def registration(request):
     try:
         User.objects.get(username=username)
         username_exist = True
+        data = {"userName": username, "error": "Already Registered"}
+        return JsonResponse(data)
+    except User.DoesNotExist:
+        logger.debug("{} is new user".format(username))
+
+    try:
         User.objects.get(email=email)
         email_exist = True
-    except Exception as e:
-        logger.debug("{} is new user".format(username))
+        data = {"email": email, "error": "Already Registered"}
+        return JsonResponse(data)
+    except User.DoesNotExist:
         logger.debug("{} is new user".format(email))
 
     # If it is a new user
