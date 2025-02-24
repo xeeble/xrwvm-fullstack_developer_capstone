@@ -90,29 +90,21 @@ def get_dealerships(request, state="All"):
 
 
 # Create a `get_dealer_reviews` view to render the reviews of a dealer
-def get_dealer_reviews(request,dealer_id):
+def get_dealer_reviews(request, dealer_id):
     if not dealer_id:
         return JsonResponse({"status": 400, "message": "Bad Request."})
         
-    try:
+    else:
         endpoint = "/fetchReviews/dealer/" + str(dealer_id)
         reviews = get_request(endpoint)
-        
-        if not reviews:
-            return JsonResponse({"status": 404, "message": "No reviews found."})
-            
         for review_detail in reviews:
             try:
                 response = analyze_review_sentiments(review_detail['review'])
                 review_detail['sentiment'] = response.get('sentiment', 'neutral') if response else 'neutral'
             except Exception as e:
                 review_detail['sentiment'] = 'neutral'
-                #logging here instead of print
-                
+                print(response)
         return JsonResponse({"status": 200, "reviews": reviews})
-        
-    except Exception as e:
-        return JsonResponse({"status": 500, "message": "Internal server error."})
 
 # Create a `get_dealer_details` view to render the dealer details
 def get_dealer_details(request, dealer_id):

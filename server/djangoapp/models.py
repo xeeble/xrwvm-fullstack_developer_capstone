@@ -33,6 +33,5 @@ class CarModel(models.Model):
         return "Name: " + self.name + "," + \
             "Car Make: " + str(self.car_make) + "," + \
             "Car Type: " + self.type + "," + \
-            "Year: " + str(self.year) + "," + \
-            "Mileage: " + str(self.mileage)
+            "Year: " + str(self.year)
     
