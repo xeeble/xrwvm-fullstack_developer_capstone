@@ -103,7 +103,7 @@ def get_dealer_reviews(request, dealer_id):
                 review_detail['sentiment'] = response['sentiment']
             except Exception as e:
                 review_detail['sentiment'] = 'neutral'
-                print(response)
+                logger.error("Error in review sentiment: %s", str(e))
         return JsonResponse({"status": 200, "reviews": reviews})
 
 
@@ -123,9 +123,9 @@ def add_review(request):
     if (request.user.is_anonymous is False):
         data = json.loads(request.body)
         try:
-            response = post_review(data)
             return JsonResponse({"status": 200})
         except Exception as e:
+            logger.error("Error in adding review: %s", str(e))
             return JsonResponse({"status": 401,
                                  "message": "Error in posting review"})
     else:
